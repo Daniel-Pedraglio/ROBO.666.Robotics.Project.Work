@@ -1,0 +1,111 @@
+ Program
+   Init Variables
+   Robot Program
+     MoveJ
+       Rest
+     Loop 4 times
+       'Pick plate'
+       P1≔pose_add(Plate, o100)
+       P2≔pose_add(Plate, o50)
+       MoveJ
+         Above_plates
+       MoveL
+         'P1'
+         P2
+         Set DO[2]=Off
+         Set DO[3]=On
+         Wait: 0.5
+         Set DO[3]=Off
+         Plate
+         'Set'
+         P2
+         'P1'
+       MoveJ
+         Above_plates
+       MoveL
+         RotatePlate
+       Plate≔pose_add(Plate, p[0,0,-0.003,0,0,0])
+       'Drop plate'
+       P1≔pose_add(PlateSlot,o150)
+       P2≔pose_add(PlateSlot, o50)
+       P3≔pose_add(PlateSlot, p[0,-0.025,0.025,0,0,0])
+       P4≔pose_add(PlateSlot, p[0,-0.025,0.15,0,0,0])
+       MoveJ
+         Above_plate_s
+       MoveL
+         P1
+         P2
+         PlateSlot
+         Set DO[3]=Off
+         Set DO[2]=On
+         Wait: 0.5
+         Set DO[2]=Off
+         P3
+         P4
+       MoveJ
+         Above_plate_s
+       If Loop_1 % 2≠0
+         PlateSlot≔pose_add(PlateSlot, p[0.1,-0.006,0,0,0,0])
+       Else
+         PlateSlot≔pose_add(PlateSlot, p[0.1,0.006,0,0,0,0])
+       'PlateSlot≔pose_add(PlateSlot, p[0.1,0.006,0,0,0,0])'
+     Loop 4 times
+       'Pick rebar'
+       P1≔pose_add(Rebar, o50)
+       P2≔pose_add(Rebar, p[-0.01,0,0.025,0,0,0])
+       P3≔pose_add(Rebar, p[-0.01,0,0.2,0,0,0])
+       MoveJ
+         Above_rebar_s
+       MoveL
+         P1
+         Set DO[2]=Off
+         Set DO[3]=On
+         Wait: 0.5
+         Set DO[3]=Off
+         Rebar
+         P2
+         P3
+       MoveJ
+         Above_rebar_s
+       Rebar≔pose_add(Rebar, p[0.015,0,-0.005,0,0,0])
+       'Drop rebar'
+       P1≔pose_add(RebarSlot, o50)
+       P2≔pose_add(RebarSlot, o150)
+       MoveJ
+         Above_rebar_s
+       MoveL
+         P1
+         RebarSlot
+         Set DO[3]=Off
+         Set DO[2]=On
+         Wait: 0.5
+         Set DO[2]=Off
+         P1
+       MoveJ
+         P2
+         'Above_rebar_s'
+       RebarSlot≔pose_add(RebarSlot, p[0.1,0,0,0,0,0])
+       'Push'
+       P1≔pose_add(Push, p[0,-0.025,0,0,0,0])
+       P2≔pose_add(Push, o50)
+       P3≔pose_add(Push, p[0,0.05,0,0,0,0])
+       P4≔pose_add(Push, o150)
+       MoveJ
+         P4
+         'Above_push'
+       MoveL
+         P1
+         Push
+         Insertion
+           Zero FT Sensor
+           Linear
+             On error
+               'Correct'
+         'Force'
+         P2
+       MoveJ
+         Above_rebar_s
+         'Above_push'
+       Push≔pose_add(Push, p[0.1,0,0,0,0,0])
+     MoveJ
+       Rest

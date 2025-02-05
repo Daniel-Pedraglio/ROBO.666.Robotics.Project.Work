@@ -1,0 +1,6 @@
+This video presents a method for rock bolt assembly using a robot manipulator. The project was done in the ROBO.666 Robotics Project Work course, 2024-2025-1 implementation. 
+
+A proposal for rock bolt assembly was first made and simulated at full scale. Then, the functionality was verified with a smaller prototype in one of the university’s laboratories. 
+
+Pictures of a mining tunnel and rock bolts provided by Sandvik. 
+Protective cover and heating image from https://www.armsrobots.com/sale-36764816-low-temperature-robot-protective-covers-clothing-resistant-for-abb-robot-arm.html
